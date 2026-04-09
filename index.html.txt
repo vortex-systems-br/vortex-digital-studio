@@ -1,0 +1,1437 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Primary SEO -->
+  <title>Sistemas Vortex BR | Desenvolvimento Web, Automação e IA</title>
+  <meta name="description" content="Transformamos negócios com sites de alta conversão, automações inteligentes e soluções de IA. Eleve sua empresa ao próximo nível digital com a Sistemas Vortex BR." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://vortexbr.com.br/" />
+
+  <!-- Open Graph (preview no WhatsApp, LinkedIn, Facebook) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://vortexbr.com.br/" />
+  <meta property="og:title" content="Sistemas Vortex BR | Desenvolvimento Web, Automação e IA" />
+  <meta property="og:description" content="Transformamos negócios com sites de alta conversão, automações inteligentes e soluções de IA." />
+  <meta property="og:image" content="https://vortexbr.com.br/og-image.jpg" />
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:site_name" content="Sistemas Vortex BR" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Sistemas Vortex BR | Next Level Digital" />
+  <meta name="twitter:description" content="Sites, automações e IA para empresas que querem dominar o digital." />
+  <meta name="twitter:image" content="https://vortexbr.com.br/og-image.jpg" />
+
+  <!-- Favicon SVG inline (sem dependência de arquivo externo) -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%2300e5ff' opacity='.15'/%3E%3Ctext y='.9em' font-size='72' x='10' fill='%2300e5ff'%3EV%3C/text%3E%3C/svg%3E" />
+
+  <!-- Fonts: preconnect primeiro para eliminar latência de DNS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600&family=Syne:wght@700;800&display=swap" />
+
+  <style>
+    /* ================================================
+       DESIGN TOKENS — todos os valores em variáveis
+    ================================================ */
+    :root {
+      --bg:            #04040a;
+      --bg-2:          #07070f;
+      --card:          rgba(255,255,255,0.03);
+      --card-hover:    rgba(255,255,255,0.06);
+      --primary:       #00e5ff;
+      --secondary:     #9d4edd;
+      --gradient:      linear-gradient(135deg, var(--primary), var(--secondary));
+      --border:        rgba(255,255,255,0.07);
+      --border-accent: rgba(0,229,255,0.35);
+      --text:          #f0f0f8;
+      --muted:         #7c7c8a;
+      --muted-2:       #3a3a4a;
+      --radius-sm:     8px;
+      --radius:        16px;
+      --radius-lg:     24px;
+      --sp-xs:         8px;
+      --sp-sm:         16px;
+      --sp-md:         24px;
+      --sp-lg:         48px;
+      --sp-xl:         96px;
+      --sp-hero:       160px;
+      --ease:          cubic-bezier(0.4, 0, 0.2, 1);
+      --t:             0.3s var(--ease);
+      --font-display:  'Syne', sans-serif;
+      --font-body:     'Space Grotesk', sans-serif;
+    }
+
+    /* ================================================
+       RESET
+    ================================================ */
+    html { box-sizing: border-box; scroll-behavior: smooth; }
+    *, *::before, *::after { box-sizing: inherit; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+
+    img { max-width: 100%; display: block; }
+    a   { color: inherit; text-decoration: none; }
+
+    /* ================================================
+       ACESSIBILIDADE
+    ================================================ */
+    /* Skip link — WCAG 2.4.1 */
+    .skip-link {
+      position: absolute;
+      top: -100%;
+      left: var(--sp-sm);
+      background: var(--primary);
+      color: #000;
+      padding: 10px 20px;
+      border-radius: var(--radius-sm);
+      font-weight: 600;
+      z-index: 9999;
+      transition: top 0.2s;
+    }
+    .skip-link:focus { top: var(--sp-sm); }
+
+    /* Focus ring — WCAG 2.4.7 */
+    :focus-visible {
+      outline: 2px solid var(--primary);
+      outline-offset: 3px;
+      border-radius: 2px;
+    }
+
+    /* Respeitar preferência de movimento do SO — WCAG 2.3.3 */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+      }
+      html { scroll-behavior: auto; }
+    }
+
+    /* ================================================
+       TIPOGRAFIA
+    ================================================ */
+    h1, h2, h3 { font-family: var(--font-display); line-height: 1.08; }
+
+    .text-gradient {
+      background: linear-gradient(90deg, var(--primary) 0%, #b44fff 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+    }
+
+    /* ================================================
+       LAYOUT
+    ================================================ */
+    .container {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 var(--sp-md);
+    }
+
+    section { padding: var(--sp-xl) 0; }
+
+    /* ================================================
+       HEADER
+    ================================================ */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      transition: background var(--t), border-color var(--t);
+    }
+
+    header.scrolled {
+      background: rgba(4,4,10,0.88);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: var(--sp-sm) 0;
+    }
+
+    .logo {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: var(--sp-lg);
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.9rem;
+      color: var(--muted);
+      position: relative;
+      transition: color var(--t);
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -3px; left: 0;
+      width: 0; height: 1px;
+      background: var(--primary);
+      transition: width var(--t);
+    }
+
+    .nav-links a:hover { color: var(--text); }
+    .nav-links a:hover::after { width: 100%; }
+
+    .nav-cta {
+      background: var(--gradient) !important;
+      color: #000 !important;
+      font-weight: 600;
+      padding: 10px 22px;
+      border-radius: var(--radius-sm);
+      font-size: 0.85rem;
+      transition: opacity var(--t), transform var(--t) !important;
+    }
+    .nav-cta:hover { opacity: 0.88; transform: translateY(-1px); }
+    .nav-cta::after { display: none !important; }
+
+    /* Hamburger */
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
+      z-index: 101;
+    }
+
+    .nav-toggle span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--text);
+      border-radius: 2px;
+      transition: transform var(--t), opacity var(--t);
+    }
+
+    /* ================================================
+       HERO
+    ================================================ */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      padding: var(--sp-hero) var(--sp-md) var(--sp-xl);
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 20% 40%, rgba(0,229,255,0.08) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 80% at 80% 70%, rgba(157,78,221,0.08) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--sp-xl);
+      align-items: center;
+      width: 100%;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(0,229,255,0.07);
+      border: 1px solid rgba(0,229,255,0.2);
+      border-radius: 100px;
+      padding: 6px 14px;
+      font-size: 0.78rem;
+      color: var(--primary);
+      margin-bottom: var(--sp-md);
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .hero-tag::before {
+      content: '';
+      width: 6px; height: 6px;
+      background: var(--primary);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.4; transform: scale(0.7); }
+    }
+
+    .hero h1 {
+      font-size: clamp(2.6rem, 5vw, 4.2rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: var(--sp-md);
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      color: var(--muted);
+      max-width: 460px;
+      margin-bottom: var(--sp-lg);
+      line-height: 1.75;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: var(--sp-sm);
+      flex-wrap: wrap;
+    }
+
+    /* Hero visual */
+    .hero-visual {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-orb {
+      width: 380px; height: 380px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(-18px); }
+    }
+
+    .hero-orb::before {
+      content: '';
+      position: absolute; inset: 0;
+      border-radius: 50%;
+      background: conic-gradient(from 0deg, var(--primary), var(--secondary), transparent, var(--primary));
+      opacity: 0.3;
+      animation: spin 10s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .orb-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      padding: 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .orb-stat {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px;
+      text-align: center;
+      backdrop-filter: blur(10px);
+    }
+
+    .orb-stat-num {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      font-weight: 800;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+    }
+
+    .orb-stat-lbl {
+      font-size: 0.72rem;
+      color: var(--muted);
+      margin-top: 4px;
+      line-height: 1.3;
+    }
+
+    /* Scroll indicator */
+    .scroll-hint {
+      position: absolute;
+      bottom: var(--sp-lg);
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      color: var(--muted-2);
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .scroll-hint-line {
+      width: 1px; height: 36px;
+      background: linear-gradient(to bottom, transparent, var(--muted-2));
+      animation: fade-line 2s ease-in-out infinite;
+    }
+
+    @keyframes fade-line {
+      0%, 100% { opacity: 0.3; }
+      50%       { opacity: 1; }
+    }
+
+    /* ================================================
+       BOTÕES
+    ================================================ */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      border-radius: var(--radius-sm);
+      font-weight: 600;
+      font-size: 0.95rem;
+      font-family: var(--font-body);
+      cursor: pointer;
+      border: none;
+      transition: transform var(--t), box-shadow var(--t), opacity var(--t), background var(--t);
+    }
+
+    .btn-primary {
+      background: var(--gradient);
+      color: #000;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(0,229,255,0.22);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--border-accent);
+      background: rgba(0,229,255,0.04);
+      transform: translateY(-2px);
+    }
+
+    /* ================================================
+       SECTION HEADER
+    ================================================ */
+    .section-header {
+      text-align: center;
+      margin-bottom: var(--sp-xl);
+    }
+
+    .section-tag {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--primary);
+      margin-bottom: var(--sp-sm);
+    }
+
+    .section-header h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: var(--sp-sm);
+    }
+
+    .section-header p {
+      color: var(--muted);
+      font-size: 1.05rem;
+      max-width: 540px;
+      margin: 0 auto;
+      line-height: 1.75;
+    }
+
+    /* ================================================
+       SERVIÇOS
+    ================================================ */
+    #servicos { background: var(--bg-2); }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: var(--sp-md);
+    }
+
+    .service-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: var(--sp-lg);
+      position: relative;
+      overflow: hidden;
+      transition: background var(--t), border-color var(--t), transform var(--t);
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: var(--gradient);
+      opacity: 0;
+      transition: opacity var(--t);
+    }
+
+    .service-card:hover {
+      background: var(--card-hover);
+      border-color: rgba(0,229,255,0.2);
+      transform: translateY(-5px);
+    }
+
+    .service-card:hover::before { opacity: 1; }
+
+    .service-icon {
+      width: 52px; height: 52px;
+      border-radius: var(--radius-sm);
+      background: rgba(0,229,255,0.07);
+      border: 1px solid rgba(0,229,255,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      margin-bottom: var(--sp-md);
+    }
+
+    .service-card h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .service-card > p {
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      margin-bottom: var(--sp-md);
+    }
+
+    .service-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .service-features li {
+      font-size: 0.875rem;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .service-features li::before {
+      content: '';
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: var(--primary);
+      flex-shrink: 0;
+    }
+
+    /* ================================================
+       POR QUE VORTEX
+    ================================================ */
+    .why-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--sp-xl);
+      align-items: center;
+    }
+
+    .why-content h2 {
+      font-size: clamp(2rem, 3.5vw, 2.8rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: var(--sp-md);
+    }
+
+    .why-content > p {
+      color: var(--muted);
+      margin-bottom: var(--sp-lg);
+      line-height: 1.75;
+    }
+
+    .why-features {
+      display: flex;
+      flex-direction: column;
+      gap: var(--sp-md);
+    }
+
+    .why-feature {
+      display: flex;
+      gap: var(--sp-md);
+      align-items: flex-start;
+    }
+
+    .why-feature-icon {
+      width: 44px; height: 44px;
+      border-radius: var(--radius-sm);
+      background: rgba(157,78,221,0.08);
+      border: 1px solid rgba(157,78,221,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+
+    .why-feature-text h4 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 4px;
+      font-family: var(--font-body);
+    }
+
+    .why-feature-text p { font-size: 0.875rem; color: var(--muted); margin: 0; }
+
+    .why-visual {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--sp-sm);
+    }
+
+    .metric-big {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: var(--sp-md);
+      text-align: center;
+    }
+
+    .metric-big:first-child {
+      grid-column: 1 / -1;
+      background: linear-gradient(135deg, rgba(0,229,255,0.06), rgba(157,78,221,0.06));
+      border-color: rgba(0,229,255,0.15);
+    }
+
+    .metric-big-num {
+      font-family: var(--font-display);
+      font-size: 2.8rem;
+      font-weight: 800;
+      line-height: 1;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+    }
+
+    .metric-big-lbl {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-top: 8px;
+      line-height: 1.4;
+    }
+
+    /* ================================================
+       PROCESSO
+    ================================================ */
+    #processo { background: var(--bg-2); }
+
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: var(--sp-md);
+    }
+
+    .process-step { text-align: center; padding: var(--sp-md); }
+
+    .process-num {
+      width: 52px; height: 52px;
+      border-radius: 50%;
+      background: var(--gradient);
+      color: #000;
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto var(--sp-sm);
+    }
+
+    .process-step h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .process-step p { font-size: 0.875rem; color: var(--muted); line-height: 1.65; }
+
+    /* ================================================
+       DEPOIMENTOS
+    ================================================ */
+    .proof-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: var(--sp-md);
+    }
+
+    .testimonial {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: var(--sp-md);
+    }
+
+    .testimonial-stars {
+      color: #f59e0b;
+      font-size: 0.85rem;
+      margin-bottom: var(--sp-sm);
+      letter-spacing: 3px;
+    }
+
+    .testimonial p {
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.75;
+      margin-bottom: var(--sp-md);
+      font-style: italic;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .testimonial-avatar {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      background: var(--gradient);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.82rem;
+      color: #000;
+      flex-shrink: 0;
+    }
+
+    .testimonial-name { font-weight: 600; font-size: 0.9rem; }
+    .testimonial-role { font-size: 0.78rem; color: var(--muted); }
+
+    /* ================================================
+       CTA
+    ================================================ */
+    .cta-section {
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-section::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 70% 100% at 50% 0%, rgba(0,229,255,0.05), transparent 70%);
+      pointer-events: none;
+    }
+
+    .cta-box {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: var(--sp-xl) var(--sp-lg);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-box::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(0,229,255,0.04), rgba(157,78,221,0.04));
+      pointer-events: none;
+    }
+
+    .cta-box h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: var(--sp-sm);
+    }
+
+    .cta-box p {
+      color: var(--muted);
+      font-size: 1.05rem;
+      max-width: 480px;
+      margin: 0 auto var(--sp-lg);
+      line-height: 1.75;
+    }
+
+    .cta-actions {
+      display: flex;
+      justify-content: center;
+      gap: var(--sp-sm);
+      flex-wrap: wrap;
+    }
+
+    /* ================================================
+       FOOTER
+    ================================================ */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: var(--sp-lg) 0;
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--sp-md);
+      flex-wrap: wrap;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: var(--sp-md);
+      list-style: none;
+    }
+
+    .footer-links a {
+      font-size: 0.85rem;
+      color: var(--muted);
+      transition: color var(--t);
+    }
+
+    .footer-links a:hover { color: var(--text); }
+    .footer-copy { font-size: 0.82rem; color: var(--muted); }
+
+    /* ================================================
+       BANNER LGPD
+    ================================================ */
+    .cookie-banner {
+      position: fixed;
+      bottom: var(--sp-md);
+      left: var(--sp-md);
+      right: var(--sp-md);
+      max-width: 620px;
+      background: rgba(10,10,20,0.96);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: var(--sp-md);
+      z-index: 200;
+      display: flex;
+      gap: var(--sp-md);
+      align-items: center;
+      flex-wrap: wrap;
+      transform: translateY(140%);
+      transition: transform 0.45s var(--ease);
+    }
+
+    .cookie-banner.visible { transform: translateY(0); }
+
+    .cookie-text {
+      flex: 1;
+      font-size: 0.875rem;
+      color: var(--muted);
+      min-width: 200px;
+      line-height: 1.6;
+    }
+
+    .cookie-text strong { color: var(--text); }
+    .cookie-text a { color: var(--primary); }
+
+    .cookie-actions { display: flex; gap: 8px; flex-shrink: 0; }
+
+    .btn-cookie-accept {
+      background: var(--gradient);
+      color: #000;
+      padding: 9px 20px;
+      border-radius: var(--radius-sm);
+      font-weight: 600;
+      font-size: 0.85rem;
+      border: none;
+      cursor: pointer;
+      font-family: var(--font-body);
+      transition: opacity var(--t);
+    }
+    .btn-cookie-accept:hover { opacity: 0.85; }
+
+    .btn-cookie-deny {
+      background: transparent;
+      color: var(--muted);
+      padding: 9px 16px;
+      border-radius: var(--radius-sm);
+      font-size: 0.85rem;
+      border: 1px solid var(--border);
+      cursor: pointer;
+      font-family: var(--font-body);
+      transition: color var(--t), border-color var(--t);
+    }
+    .btn-cookie-deny:hover { color: var(--text); border-color: rgba(255,255,255,0.2); }
+
+    /* ================================================
+       ANIMAÇÕES DE SCROLL
+    ================================================ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.65s var(--ease), transform 0.65s var(--ease);
+    }
+
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-d1 { transition-delay: 0.1s; }
+    .reveal-d2 { transition-delay: 0.2s; }
+    .reveal-d3 { transition-delay: 0.3s; }
+
+    /* ================================================
+       RESPONSIVO
+    ================================================ */
+    @media (max-width: 900px) {
+      .hero-grid          { grid-template-columns: 1fr; text-align: center; }
+      .hero p             { margin-left: auto; margin-right: auto; }
+      .hero-actions       { justify-content: center; }
+      .hero-visual        { display: none; }
+      .why-grid           { grid-template-columns: 1fr; }
+      .why-visual         { display: none; }
+    }
+
+    @media (max-width: 768px) {
+      :root { --sp-xl: 64px; --sp-hero: 110px; }
+
+      .nav-links { display: none; }
+
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        inset: 0;
+        background: rgba(4,4,10,0.98);
+        backdrop-filter: blur(24px);
+        align-items: center;
+        justify-content: center;
+        gap: var(--sp-lg);
+        z-index: 99;
+      }
+
+      .nav-links.open a { font-size: 1.5rem; color: var(--text); }
+
+      .nav-toggle { display: flex; }
+
+      .nav-toggle.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+      .nav-toggle.open span:nth-child(2) { opacity: 0; }
+      .nav-toggle.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+      .footer-inner { flex-direction: column; text-align: center; }
+      .footer-links { justify-content: center; flex-wrap: wrap; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- WCAG 2.4.1 — Skip navigation -->
+<a href="#conteudo" class="skip-link">Pular para o conteúdo</a>
+
+<!-- ============================================================
+     HEADER
+============================================================ -->
+<header id="site-header">
+  <div class="container">
+    <nav class="nav" aria-label="Navegação principal">
+
+      <a href="/" class="logo" aria-label="Sistemas Vortex BR — página inicial">VORTEX BR</a>
+
+      <ul class="nav-links" id="nav-links" role="list">
+        <li><a href="#servicos">Serviços</a></li>
+        <li><a href="#sobre">Por que Vortex</a></li>
+        <li><a href="#processo">Processo</a></li>
+        <li><a href="#depoimentos">Depoimentos</a></li>
+        <li>
+          <a href="https://wa.me/5518991320437"
+             class="nav-cta"
+             target="_blank"
+             rel="noopener noreferrer"
+             aria-label="Entrar em contato pelo WhatsApp">
+            Falar Agora
+          </a>
+        </li>
+      </ul>
+
+      <button class="nav-toggle"
+              id="nav-toggle"
+              aria-label="Abrir menu de navegação"
+              aria-expanded="false"
+              aria-controls="nav-links">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+    </nav>
+  </div>
+</header>
+
+<!-- ============================================================
+     CONTEÚDO PRINCIPAL
+============================================================ -->
+<main id="conteudo">
+
+  <!-- ── HERO ── -->
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="container">
+      <div class="hero-grid">
+
+        <div class="hero-content">
+          <div class="hero-tag" aria-hidden="true">Next Level Digital</div>
+          <h1 id="hero-title">
+            Próxima<br />
+            <span class="text-gradient">Dimensão Digital</span>
+          </h1>
+          <p>
+            Desenvolvemos sites de alta conversão, automações inteligentes e soluções com IA para empresas que querem dominar o digital.
+          </p>
+          <div class="hero-actions">
+            <a href="https://wa.me/5518991320437"
+               class="btn btn-primary"
+               target="_blank"
+               rel="noopener noreferrer"
+               aria-label="Iniciar conversa no WhatsApp com a Sistemas Vortex BR">
+              Começar meu projeto
+            </a>
+            <a href="#servicos" class="btn btn-ghost">Ver serviços</a>
+          </div>
+        </div>
+
+        <div class="hero-visual" aria-hidden="true">
+          <div class="hero-orb">
+            <div class="orb-inner">
+              <div class="orb-stat">
+                <div class="orb-stat-num">100%</div>
+                <div class="orb-stat-lbl">Projetos entregues</div>
+              </div>
+              <div class="orb-stat">
+                <div class="orb-stat-num">24h</div>
+                <div class="orb-stat-lbl">Suporte ativo</div>
+              </div>
+              <div class="orb-stat">
+                <div class="orb-stat-num">+50</div>
+                <div class="orb-stat-lbl">Clientes ativos</div>
+              </div>
+              <div class="orb-stat">
+                <div class="orb-stat-num">IA</div>
+                <div class="orb-stat-lbl">Em cada solução</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="scroll-hint" aria-hidden="true">
+      <span>Role para baixo</span>
+      <div class="scroll-hint-line"></div>
+    </div>
+  </section>
+
+  <!-- ── SERVIÇOS ── -->
+  <section id="servicos" aria-labelledby="servicos-title" style="background: var(--bg-2);">
+    <div class="container">
+
+      <div class="section-header reveal">
+        <span class="section-tag">O que fazemos</span>
+        <h2 id="servicos-title">Serviços que <span class="text-gradient">geram resultado</span></h2>
+        <p>Combinamos design, tecnologia e estratégia para transformar sua presença digital em uma máquina de crescimento.</p>
+      </div>
+
+      <div class="services-grid">
+
+        <article class="service-card reveal reveal-d1">
+          <div class="service-icon" aria-hidden="true">🌐</div>
+          <h3>Websites Premium</h3>
+          <p>Sites que vendem enquanto você dorme. Design moderno, performance máxima e experiência que converte visitantes em clientes.</p>
+          <ul class="service-features" aria-label="Características do serviço de websites">
+            <li>Design responsivo e mobile-first</li>
+            <li>SEO técnico incluído na entrega</li>
+            <li>Core Web Vitals otimizados</li>
+            <li>Integração com analytics e pixels</li>
+          </ul>
+        </article>
+
+        <article class="service-card reveal reveal-d2">
+          <div class="service-icon" aria-hidden="true">⚙️</div>
+          <h3>Automação Inteligente</h3>
+          <p>Bots e sistemas que trabalham 24h por você. Elimine tarefas repetitivas e foque no que realmente importa.</p>
+          <ul class="service-features" aria-label="Características do serviço de automação">
+            <li>Bots para WhatsApp e Instagram</li>
+            <li>Automação de processos internos</li>
+            <li>Integração entre plataformas</li>
+            <li>Relatórios automáticos</li>
+          </ul>
+        </article>
+
+        <article class="service-card reveal reveal-d3">
+          <div class="service-icon" aria-hidden="true">🤖</div>
+          <h3>Inteligência Artificial</h3>
+          <p>Decisões mais inteligentes com tecnologia de ponta. Implantamos IA customizada para o seu contexto de negócio.</p>
+          <ul class="service-features" aria-label="Características do serviço de inteligência artificial">
+            <li>Chatbots com IA generativa</li>
+            <li>Análise preditiva de dados</li>
+            <li>Personalização de conteúdo</li>
+            <li>Modelos customizados ao seu negócio</li>
+          </ul>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── POR QUE VORTEX ── -->
+  <section id="sobre" aria-labelledby="sobre-title">
+    <div class="container">
+      <div class="why-grid">
+
+        <div class="why-content">
+          <span class="section-tag">Por que escolher a Vortex</span>
+          <h2 id="sobre-title">Tecnologia com <span class="text-gradient">propósito real</span></h2>
+          <p>
+            Não somos mais uma agência digital. Somos um parceiro estratégico que entende de negócio, tecnologia e resultado mensurável.
+          </p>
+          <div class="why-features">
+            <div class="why-feature reveal">
+              <div class="why-feature-icon" aria-hidden="true">⚡</div>
+              <div class="why-feature-text">
+                <h4>Entrega rápida, sem burocracia</h4>
+                <p>Processos enxutos que garantem agilidade sem abrir mão da qualidade técnica.</p>
+              </div>
+            </div>
+            <div class="why-feature reveal reveal-d1">
+              <div class="why-feature-icon" aria-hidden="true">📊</div>
+              <div class="why-feature-text">
+                <h4>Foco total em conversão</h4>
+                <p>Cada decisão de design e tecnologia é orientada a gerar resultado real e mensurável.</p>
+              </div>
+            </div>
+            <div class="why-feature reveal reveal-d2">
+              <div class="why-feature-icon" aria-hidden="true">🔒</div>
+              <div class="why-feature-text">
+                <h4>Suporte contínuo e transparente</h4>
+                <p>Você nunca fica no escuro. Acompanhamento completo durante e após a entrega.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="why-visual reveal" aria-hidden="true">
+          <div class="metric-big">
+            <div class="metric-big-num">+300%</div>
+            <div class="metric-big-lbl">Aumento médio em geração de leads dos nossos clientes</div>
+          </div>
+          <div class="metric-big">
+            <div class="metric-big-num">7 dias</div>
+            <div class="metric-big-lbl">Prazo médio de entrega</div>
+          </div>
+          <div class="metric-big">
+            <div class="metric-big-num">5 ★</div>
+            <div class="metric-big-lbl">Avaliação média dos clientes</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PROCESSO ── -->
+  <section id="processo" aria-labelledby="processo-title" style="background: var(--bg-2);">
+    <div class="container">
+
+      <div class="section-header reveal">
+        <span class="section-tag">Como funciona</span>
+        <h2 id="processo-title">Do briefing ao <span class="text-gradient">resultado</span></h2>
+        <p>Um processo simples, transparente e orientado a entregar o máximo valor em cada etapa.</p>
+      </div>
+
+      <div class="process-grid">
+        <div class="process-step reveal reveal-d1">
+          <div class="process-num" aria-hidden="true">1</div>
+          <h3>Diagnóstico</h3>
+          <p>Entendemos seus objetivos, público-alvo e contexto de mercado antes de propor qualquer solução.</p>
+        </div>
+        <div class="process-step reveal reveal-d2">
+          <div class="process-num" aria-hidden="true">2</div>
+          <h3>Estratégia</h3>
+          <p>Definimos as tecnologias, arquitetura e design ideais para maximizar seus resultados.</p>
+        </div>
+        <div class="process-step reveal reveal-d3">
+          <div class="process-num" aria-hidden="true">3</div>
+          <h3>Desenvolvimento</h3>
+          <p>Desenvolvemos com agilidade mantendo você informado e envolvido em cada etapa do processo.</p>
+        </div>
+        <div class="process-step reveal">
+          <div class="process-num" aria-hidden="true">4</div>
+          <h3>Entrega + Suporte</h3>
+          <p>Lançamos com garantia e acompanhamos os resultados para assegurar o sucesso contínuo.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── DEPOIMENTOS ── -->
+  <section id="depoimentos" aria-labelledby="depoimentos-title">
+    <div class="container">
+
+      <div class="section-header reveal">
+        <span class="section-tag">Depoimentos</span>
+        <h2 id="depoimentos-title">O que nossos <span class="text-gradient">clientes dizem</span></h2>
+      </div>
+
+      <div class="proof-grid">
+
+        <article class="testimonial reveal reveal-d1">
+          <div class="testimonial-stars" aria-label="Avaliação: 5 estrelas">★★★★★</div>
+          <p>"A Vortex transformou completamente a presença digital da minha empresa. As leads triplicaram em menos de 60 dias do site no ar."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar" aria-hidden="true">MF</div>
+            <div>
+              <p class="testimonial-name">Marcos Ferreira</p>
+              <p class="testimonial-role">CEO — Construtora MF</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="testimonial reveal reveal-d2">
+          <div class="testimonial-stars" aria-label="Avaliação: 5 estrelas">★★★★★</div>
+          <p>"O bot de WhatsApp que eles criaram economiza mais de 4 horas do meu dia. Atende, qualifica e agenda reuniões sozinho."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar" aria-hidden="true">AC</div>
+            <div>
+              <p class="testimonial-name">Ana Carvalho</p>
+              <p class="testimonial-role">Fundadora — Clínica Estética AC</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="testimonial reveal reveal-d3">
+          <div class="testimonial-stars" aria-label="Avaliação: 5 estrelas">★★★★★</div>
+          <p>"Profissionalismo impecável do início ao fim. Entregaram antes do prazo com qualidade acima do esperado. Super recomendo."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar" aria-hidden="true">RS</div>
+            <div>
+              <p class="testimonial-name">Ricardo Santos</p>
+              <p class="testimonial-role">Diretor — RS Consultoria</p>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA FINAL ── -->
+  <section class="cta-section" aria-labelledby="cta-title">
+    <div class="container">
+      <div class="cta-box reveal">
+        <h2 id="cta-title">Pronto para o <span class="text-gradient">próximo nível?</span></h2>
+        <p>Fale com nossa equipe agora. Diagnóstico gratuito, sem compromisso, resultado garantido.</p>
+        <div class="cta-actions">
+          <a href="https://wa.me/5518991320437"
+             class="btn btn-primary"
+             target="_blank"
+             rel="noopener noreferrer"
+             aria-label="Iniciar diagnóstico gratuito pelo WhatsApp">
+            Quero meu diagnóstico gratuito
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============================================================
+     FOOTER
+============================================================ -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="logo">VORTEX BR</div>
+      <ul class="footer-links" role="list">
+        <li><a href="#servicos">Serviços</a></li>
+        <li><a href="#processo">Processo</a></li>
+        <li><a href="politica-de-privacidade.html">Privacidade</a></li>
+        <li>
+          <a href="https://wa.me/5518991320437"
+             target="_blank"
+             rel="noopener noreferrer"
+             aria-label="Contato via WhatsApp">WhatsApp</a>
+        </li>
+      </ul>
+      <p class="footer-copy">© 2026 Sistemas Vortex BR — Todos os direitos reservados.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ============================================================
+     BANNER LGPD
+============================================================ -->
+<div class="cookie-banner"
+     id="cookie-banner"
+     role="dialog"
+     aria-modal="false"
+     aria-label="Aviso de uso de cookies"
+     aria-live="polite">
+  <p class="cookie-text">
+    <strong>Usamos cookies</strong> para melhorar sua experiência e analisar o tráfego, conforme nossa
+    <a href="politica-de-privacidade.html">política de privacidade</a> (LGPD — Lei 13.709/2018).
+  </p>
+  <div class="cookie-actions">
+    <button class="btn-cookie-accept" id="cookie-accept">Aceitar</button>
+    <button class="btn-cookie-deny" id="cookie-deny">Recusar</button>
+  </div>
+</div>
+
+<!-- ============================================================
+     SCHEMA.ORG JSON-LD
+============================================================ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Sistemas Vortex BR",
+  "url": "https://vortexbr.com.br",
+  "description": "Desenvolvimento de sites, automações e sistemas com IA para empresas que querem dominar o digital.",
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+55-18-99144-4158",
+    "contactType": "customer service",
+    "availableLanguage": "Portuguese"
+  },
+  "areaServed": "BR",
+  "serviceType": ["Desenvolvimento Web", "Automação de Processos", "Inteligência Artificial"]
+}
+</script>
+
+<!-- ============================================================
+     SCRIPTS
+============================================================ -->
+<script>
+  /* ── Header: estilo ao rolar ── */
+  const header = document.getElementById('site-header');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 40);
+  }, { passive: true });
+
+  /* ── Menu mobile ── */
+  const toggle   = document.getElementById('nav-toggle');
+  const navLinks = document.getElementById('nav-links');
+
+  toggle.addEventListener('click', () => {
+    const isOpen = navLinks.classList.toggle('open');
+    toggle.classList.toggle('open', isOpen);
+    toggle.setAttribute('aria-expanded', String(isOpen));
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+  });
+
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      toggle.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    });
+  });
+
+  /* Fechar menu com tecla Escape */
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && navLinks.classList.contains('open')) {
+      navLinks.classList.remove('open');
+      toggle.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+      toggle.focus();
+    }
+  });
+
+  /* ── Scroll reveal com IntersectionObserver ── */
+  const revealEls = document.querySelectorAll('.reveal');
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+  revealEls.forEach(el => revealObserver.observe(el));
+
+  /* ── Cookie banner LGPD ── */
+  const banner     = document.getElementById('cookie-banner');
+  const COOKIE_KEY = 'vortex_lgpd_consent';
+
+  if (!localStorage.getItem(COOKIE_KEY)) {
+    setTimeout(() => banner.classList.add('visible'), 1800);
+  }
+
+  document.getElementById('cookie-accept').addEventListener('click', () => {
+    localStorage.setItem(COOKIE_KEY, 'accepted');
+    banner.classList.remove('visible');
+    /*
+     * ✅ ATIVE O GOOGLE ANALYTICS AQUI APÓS CONSENTIMENTO:
+     *
+     * const script = document.createElement('script');
+     * script.src = 'https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX';
+     * script.async = true;
+     * document.head.appendChild(script);
+     * window.dataLayer = window.dataLayer || [];
+     * function gtag(){ dataLayer.push(arguments); }
+     * gtag('js', new Date());
+     * gtag('config', 'G-XXXXXXXXXX');
+     */
+  });
+
+  document.getElementById('cookie-deny').addEventListener('click', () => {
+    localStorage.setItem(COOKIE_KEY, 'denied');
+    banner.classList.remove('visible');
+  });
+</script>
+
+</body>
+</html>
